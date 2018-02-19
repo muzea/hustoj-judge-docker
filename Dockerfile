@@ -32,4 +32,4 @@ RUN set -ex \
 
 WORKDIR /home/judge
 
-CMD judged && sh
+CMD judged && tail -f /dev/null
