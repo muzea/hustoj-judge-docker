@@ -20,7 +20,7 @@ RUN set -ex \
     && chmod +x judged \
     && cp judged /usr/bin \
     && cd ../judge_client \
-    && patch judge_client.cc /judge_client.patch \
+    && patch --ignore-whitespace judge_client.cc /judge_client.patch \
     && make \
     && chmod +x judge_client \
     && cp judge_client /usr/bin \
