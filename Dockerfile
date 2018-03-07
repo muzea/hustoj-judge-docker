@@ -9,6 +9,7 @@ RUN set -ex \
                git \
                gcc \
                g++ \
+               make \
                libmysqlclient-dev \
                libmysql++-dev \
                pypy \
