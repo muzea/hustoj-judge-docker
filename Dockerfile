@@ -1,15 +1,17 @@
 FROM debian:jessie-slim
 LABEL maintainer="muzea <mr.muzea@gmail.com>"
 
+COPY judge_client.patch /
+
 RUN set -ex \
     && apt update \
-    && apt install \
+    && apt install -y \
                git \
                gcc \
                g++ \
-               make \
                libmysqlclient-dev \
-               libmysql++-dev -y \
+               libmysql++-dev \
+               pypy \
     && mkdir /home/judge \
     && cd / && git clone https://github.com/zhblue/hustoj.git \
     && cd /hustoj/trunk/core/judged \
@@ -17,6 +19,7 @@ RUN set -ex \
     && chmod +x judged \
     && cp judged /usr/bin \
     && cd ../judge_client \
+    && patch judge_client.cc /judge_client.patch \
     && make \
     && chmod +x judge_client \
     && cp judge_client /usr/bin \
@@ -33,3 +36,4 @@ RUN set -ex \
 WORKDIR /home/judge
 
 CMD judged && tail -f /dev/null
+

@@ -1,0 +1,32 @@
+diff -Nu judge_client/judge_client.cc judge_client_pypy/judge_client.cc
+--- judge_client/judge_client.cc        2018-03-07 21:24:33.617059186 +0800
++++ judge_client_pypy/judge_client.cc   2018-03-07 21:29:24.452211881 +0800
+@@ -1556,12 +1556,12 @@
+         execute_cmd("mkdir -p %s/usr/lib", work_dir);
+         execute_cmd("mkdir -p %s/usr/lib64", work_dir);
+         execute_cmd("mkdir -p %s/usr/local/lib", work_dir);
+-        execute_cmd("cp /usr/bin/python* %s/", work_dir);
+-        execute_cmd("cp -a /usr/lib/python* %s/usr/lib/", work_dir);
+-        execute_cmd("cp -a /usr/lib64/python* %s/usr/lib64/", work_dir);
+-        execute_cmd("cp -a /usr/local/lib/python* %s/usr/local/lib/", work_dir);
+-        execute_cmd("cp -a /usr/include/python* %s/usr/include/", work_dir);
+-        execute_cmd("cp -a /usr/lib/libpython* %s/usr/lib/", work_dir);
++        execute_cmd("cp /usr/bin/pypy* %s/", work_dir);
++        execute_cmd("cp -a /usr/lib/pypy* %s/usr/lib/", work_dir);
++        execute_cmd("cp -a /usr/lib64/pypy* %s/usr/lib64/", work_dir);
++        execute_cmd("cp -a /usr/local/lib/pypy* %s/usr/local/lib/", work_dir);
++        execute_cmd("cp -a /usr/include/pypy* %s/usr/include/", work_dir);
++        execute_cmd("cp -a /usr/lib/libpypy* %s/usr/lib/", work_dir);
+         execute_cmd("/bin/mkdir -p %s/home/judge", work_dir);
+        execute_cmd("/bin/chown judge %s", work_dir);
+        execute_cmd("/bin/mkdir -p %s/etc", work_dir);
+@@ -1804,7 +1804,7 @@
+                if(!py2){
+                        execl("/python2", "/python2", "Main.py", (char *) NULL);
+                }else{
+-                       execl("/python3", "/python3", "Main.py", (char *) NULL);
++                       execl("/pypy", "/pypy", "Main.py", (char *) NULL);
+                }
+                break;
+        case 7: //php
+
